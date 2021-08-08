@@ -2,16 +2,16 @@ const AWS = require('aws-sdk');
 const profiles = require('./profiles.json');
 const { printError } = require('../helper/print');
 
-const profileName = process.argv[2] || 'a new profile';
-const profile = profiles[profileName];
+const key = process.argv[2] || 'a new key';
+const profileConfig = profiles[key];
 
-if (!profile) printError(`Profile not found, please add ${profileName} to profiles.json`);
+if (!profileConfig) printError(`Key not found, please add ${key} to profiles.json`);
 
 AWS.config.credentials = new AWS.SharedIniFileCredentials({
-    profile: profileName,
+    profile: profileConfig.profile,
 });
 
-AWS.config.update({ region: profile.region });
+AWS.config.update({ region: profileConfig.region });
 AWS.config.apiVersions = {
     s3: '2006-03-01',
     codebuild: '2016-10-06',
@@ -19,5 +19,5 @@ AWS.config.apiVersions = {
 
 module.exports = {
     AWS,
-    profile,
+    profileConfig,
 };
