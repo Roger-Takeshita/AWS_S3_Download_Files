@@ -1,11 +1,12 @@
 const inquirer = require('inquirer');
 const { printError } = require('./print');
+const { profileConfig } = require('../config/aws-config');
 
 inquirer.registerPrompt('checkbox-plus', require('inquirer-checkbox-plus'));
 
 const inquirerFiles = async (files) => {
     const menu = [];
-    const maxFiles = 10;
+    const maxFiles = profileConfig.limit;
 
     for (let i = 0; i < maxFiles; i += 1) {
         menu.push({
@@ -22,7 +23,7 @@ const inquirerFiles = async (files) => {
                 type: 'checkbox-plus',
                 name: 'files',
                 message: 'Select your files:',
-                pageSize: 10,
+                pageSize: profileConfig.limit,
                 highlight: true,
                 footer: 'move up/down to select',
                 header: 'press space to select',

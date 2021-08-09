@@ -2,7 +2,7 @@ const fs = require('fs');
 const os = require('os');
 const util = require('util');
 const { AWS, profileConfig } = require('./config/aws-config');
-const { printError } = require('./helper/print');
+const { printError, printSuccess } = require('./helper/print');
 
 const getFilesURL = async () => {
     const s3 = new AWS.S3();
@@ -99,16 +99,16 @@ const downloadFilesS3 = async (files) => {
             };
 
             const data = await s3.getObject(params).promise();
-            await writeFile(folder, data.Body);
+            await writeFile(`${folder}/${file}`, data.Body);
         }, Promise.resolve());
 
-        return console.log('Files downloaded successfully!');
+        printSuccess('Files downloaded successfully!');
     } catch (error) {
         if (error.code === 'AccessDenied') {
             return printError(`S3 - Looks like you don't have permission to access ${profileConfig.bucket} bucket.`);
         }
 
-        return printError(`S3 - ${error}`);
+        printError(`S3 - ${error}`);
     }
 };
 
