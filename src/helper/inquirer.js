@@ -9,12 +9,14 @@ const inquirerFiles = async (files) => {
     const maxFiles = profileConfig.limit;
 
     for (let i = 0; i < maxFiles; i += 1) {
-        menu.push({
-            name: files[i],
-            value: files[i],
-            disabled: false,
-            type: 'url',
-        });
+        if (files[i]) {
+            menu.push({
+                name: files[i],
+                value: files[i],
+                disabled: false,
+                type: 'url',
+            });
+        }
     }
 
     try {
@@ -38,7 +40,7 @@ const inquirerFiles = async (files) => {
         ]);
         return answers.files;
     } catch (error) {
-        return printError(error);
+        printError(error);
     }
 };
 

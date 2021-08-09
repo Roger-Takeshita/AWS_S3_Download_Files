@@ -8,9 +8,10 @@ const printError = (message) => {
     process.exit(0);
 };
 
-const printSuccess = (message) => {
+const printSuccess = (message, folder) => {
     console.log();
     console.log(chalk`    {${bgRGB.GND}.${fgRGB.WHT}.bold  SUCCESS: } {${fgRGB.GND} ${message} }`);
+    console.log(chalk`    {${fgRGB.BL}.bold  Location:} ${folder}`);
     console.log();
 };
 

@@ -15,5 +15,6 @@ module.exports = {
         'max-len': 'off',
         'consistent-return': 'off',
         'array-callback-return': 'off',
+        'import/no-dynamic-require': 'off',
     },
 };

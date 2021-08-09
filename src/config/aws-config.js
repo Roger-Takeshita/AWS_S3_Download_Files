@@ -1,11 +1,11 @@
 const AWS = require('aws-sdk');
-const profiles = require('./profiles.json');
 const { printError } = require('../helper/print');
 
+const awsConfig = require(process.env.AWS_CONFIG);
 const key = process.argv[2] || 'a new key';
-const profileConfig = profiles[key];
+const profileConfig = awsConfig[key];
 
-if (!profileConfig) printError(`Key not found, please add ${key} to profiles.json`);
+if (!profileConfig) printError(`Key not found, please add "${key}" to aws-config.json`);
 
 AWS.config.credentials = new AWS.SharedIniFileCredentials({
     profile: profileConfig.profile,

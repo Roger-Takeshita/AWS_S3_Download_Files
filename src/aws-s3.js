@@ -40,7 +40,7 @@ const getFilesURL = async () => {
         return filesArray;
     } catch (error) {
         if (error.code === 'AccessDenied') {
-            return printError(`S3 - Looks like you don't have permission to access ${profileConfig.bucket} bucket.`);
+            printError(`S3 - Looks like you don't have permission to access ${profileConfig.bucket} bucket.`);
         }
 
         printError(`S3 - ${error}`);
@@ -71,7 +71,7 @@ const getFilesS3 = async () => {
         return filesArray;
     } catch (error) {
         if (error.code === 'AccessDenied') {
-            return printError(`S3 - Looks like you don't have permission to access ${profileConfig.bucket} bucket.`);
+            printError(`S3 - Looks like you don't have permission to access ${profileConfig.bucket} bucket.`);
         }
 
         printError(`S3 - ${error}`);
@@ -102,10 +102,10 @@ const downloadFilesS3 = async (files) => {
             await writeFile(`${folder}/${file}`, data.Body);
         }, Promise.resolve());
 
-        printSuccess('Files downloaded successfully!');
+        printSuccess('Files downloaded successfully!', folder);
     } catch (error) {
         if (error.code === 'AccessDenied') {
-            return printError(`S3 - Looks like you don't have permission to access ${profileConfig.bucket} bucket.`);
+            printError(`S3 - Looks like you don't have permission to access ${profileConfig.bucket} bucket.`);
         }
 
         printError(`S3 - ${error}`);

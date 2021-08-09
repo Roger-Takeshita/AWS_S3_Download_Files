@@ -3,16 +3,17 @@
 const { getFilesS3, downloadFilesS3 } = require('./aws-s3');
 const { printError } = require('./helper/print');
 const { inquirerFiles } = require('./helper/inquirer');
+const { profileConfig } = require('./config/aws-config');
 
 const getBucketFiles = async () => {
-    if (process.argv.length > 2 && process.argv.length <= 3) {
+    try {
         const files = await getFilesS3();
 
-        files.sort((a, b) => a.localeCompare(b));
+        if (profileConfig.sortResult === 'desc') files.sort((a, b) => b.localeCompare(a));
         const selectedFiles = await inquirerFiles(files);
-        downloadFilesS3(selectedFiles);
-    } else {
-        printError('Please provide an aws profile.');
+        await downloadFilesS3(selectedFiles);
+    } catch (error) {
+        printError(error);
     }
 };
 
