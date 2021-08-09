@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const { getFiles } = require('./aws-s3');
+const { getFilesS3, downloadFilesS3 } = require('./aws-s3');
 const { printError } = require('./helper/print');
 const { inquirerFiles } = require('./helper/inquirer');
 
 const getBucketFiles = async () => {
     if (process.argv.length > 2 && process.argv.length <= 3) {
-        const files = await getFiles();
+        const files = await getFilesS3();
 
-        files.sort((a, b) => a.filename.localeCompare(b.filename));
+        files.sort((a, b) => a.localeCompare(b));
         const selectedFiles = await inquirerFiles(files);
-        console.log(selectedFiles);
+        downloadFilesS3(selectedFiles);
     } else {
         printError('Please provide an aws profile.');
     }

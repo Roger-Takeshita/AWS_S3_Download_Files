@@ -9,8 +9,8 @@ const inquirerFiles = async (files) => {
 
     for (let i = 0; i < maxFiles; i += 1) {
         menu.push({
-            name: files[i].filename,
-            value: files[i].url,
+            name: files[i],
+            value: files[i],
             disabled: false,
             type: 'url',
         });
@@ -24,7 +24,6 @@ const inquirerFiles = async (files) => {
                 message: 'Select your files:',
                 pageSize: 10,
                 highlight: true,
-                default: [menu[0].name],
                 footer: 'move up/down to select',
                 header: 'press space to select',
                 searching: 'searching....',

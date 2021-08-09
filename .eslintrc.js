@@ -13,5 +13,7 @@ module.exports = {
         'no-console': 'off',
         'operator-linebreak': 'off',
         'max-len': 'off',
+        'consistent-return': 'off',
+        'array-callback-return': 'off',
     },
 };
