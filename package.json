@@ -1,5 +1,5 @@
 {
-    "name": "aws-s3-download-files",
+    "name": "aws-s3-files",
     "version": "1.0.0",
     "description": "AWS S3 Download Files",
     "main": "src/index.js",
@@ -9,14 +9,14 @@
     "bin": "./src/index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Roger-Takeshita/AWS_S3_Download_Files.git"
+        "url": "git+https://github.com/Roger-Takeshita/aws-s3-files.git"
     },
     "author": "Roger Takeshita",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/Roger-Takeshita/AWS_S3_Download_Files/issues"
+        "url": "https://github.com/Roger-Takeshita/aws-s3-files/issues"
     },
-    "homepage": "https://github.com/Roger-Takeshita/AWS_S3_Download_Files#readme",
+    "homepage": "https://github.com/Roger-Takeshita/aws-s3-files#readme",
     "dependencies": {
         "aws-sdk": "^2.962.0",
         "chalk": "^4.1.2",
