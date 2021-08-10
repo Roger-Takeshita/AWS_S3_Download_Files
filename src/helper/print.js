@@ -11,7 +11,7 @@ const printError = (message) => {
 const printSuccess = (message, folder) => {
     console.log();
     console.log(chalk`    {${bgRGB.GND}.${fgRGB.WHT}.bold  SUCCESS: } {${fgRGB.GND} ${message} }`);
-    console.log(chalk`    {${fgRGB.BL}.bold  Location:} ${folder}`);
+    console.log(chalk`    {${bgRGB.BLD}.${fgRGB.WHT}.bold  FOLDER:  } {${fgRGB.BL} ${folder}}`);
     console.log();
 };
 

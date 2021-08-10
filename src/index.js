@@ -7,9 +7,15 @@ const { profileConfig } = require('./config/aws-config');
 
 const getBucketFiles = async () => {
     try {
-        const files = await getFilesS3();
+        const filter = process.argv[3];
+        let files = await getFilesS3();
 
         if (profileConfig.sortResult === 'desc') files.sort((a, b) => b.localeCompare(a));
+        if (filter) {
+            const re = new RegExp(filter, 'gi');
+            files = files.filter((item) => item.match(re));
+        }
+
         const selectedFiles = await inquirerFiles(files);
         await downloadFilesS3(selectedFiles);
     } catch (error) {
